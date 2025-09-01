@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import Icon from '@/components/ui/icon';
+import { Link } from 'react-router-dom';
 
 export default function Index() {
   return (
@@ -10,13 +11,13 @@ export default function Index() {
       <header className="sticky top-0 bg-background/80 backdrop-blur-md z-50 border-b">
         <div className="container mx-auto px-6 py-4">
           <nav className="flex justify-between items-center">
-            <div className="text-2xl font-bold bg-gradient-to-r from-coral to-turquoise bg-clip-text text-transparent">
+            <Link to="/" className="text-2xl font-bold bg-gradient-to-r from-coral to-turquoise bg-clip-text text-transparent">
               Анна Дизайн
-            </div>
+            </Link>
             <div className="hidden md:flex space-x-8">
               <a href="#hero" className="hover:text-primary transition-colors">Главная</a>
               <a href="#portfolio" className="hover:text-primary transition-colors">Портфолио</a>
-              <a href="#blog" className="hover:text-primary transition-colors">Блог</a>
+              <Link to="/blog" className="hover:text-primary transition-colors">Блог</Link>
               <a href="#services" className="hover:text-primary transition-colors">Услуги</a>
               <a href="#contact" className="hover:text-primary transition-colors">Контакты</a>
             </div>
@@ -262,9 +263,11 @@ export default function Index() {
                   <div className="text-2xl font-bold text-primary mb-4">
                     {service.price}
                   </div>
-                  <Button className="w-full bg-gradient-to-r from-coral to-primary text-white group-hover:shadow-lg">
-                    Заказать
-                  </Button>
+                  <Link to={`/services/${service.icon === 'Zap' ? 'logo-design' : service.icon === 'Palette' ? 'brand-identity' : service.icon === 'Package' ? 'packaging-design' : 'ui-ux-design'}`}>
+                    <Button className="w-full bg-gradient-to-r from-coral to-primary text-white group-hover:shadow-lg">
+                      Заказать
+                    </Button>
+                  </Link>
                 </CardContent>
               </Card>
             ))}
